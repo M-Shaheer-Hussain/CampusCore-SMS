@@ -1,0 +1,12 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore SQLite DB if you don't want to commit it
+data/*.db
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore environment files (optional)
+.env
