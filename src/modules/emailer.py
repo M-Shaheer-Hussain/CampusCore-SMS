@@ -2,7 +2,7 @@ import sqlite3
 import smtplib
 import random
 
-def send_verification_code():
+def send_verification_code(reason_for:str):
     conn = sqlite3.connect("data/campuscore.db")
     cursor = conn.cursor()
 
@@ -32,7 +32,7 @@ def send_verification_code():
     code = str(random.randint(100000, 999999))
 
     try:
-        message = f"Subject: CampusCore Verification\n\nYour verification code is: {code}"
+        message = f"Subject: CampusCore Verification\n\nYour verification code {reason_for}is: {code}"
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login('mshaheerhussain902@gmail.com', 'asov uziu frfo zkzn')

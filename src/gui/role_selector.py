@@ -6,6 +6,7 @@ from src.gui.admin_create import AdminCreatePanel
 class RoleSelector(QWidget):
     def __init__(self):
         super().__init__()
+        #Window Name can be changed from here!
         self.setWindowTitle("Select Role")
         self.init_ui()
 
@@ -14,7 +15,7 @@ class RoleSelector(QWidget):
 
         receptionist_login = QPushButton("Receptionist Login")
         receptionist_create = QPushButton("Add Receptionist")
-        admin_create = QPushButton("Create Admin")
+        admin_create = QPushButton("Add Admin")
 
         receptionist_login.clicked.connect(self.open_login)
         receptionist_create.clicked.connect(self.open_create)

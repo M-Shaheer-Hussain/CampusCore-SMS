@@ -37,7 +37,7 @@ class ReceptionistCreatePanel(QWidget):
         self.password.setEchoMode(QLineEdit.Password)
 
         self.contact_type = QComboBox()
-        self.contact_type.addItems(["phone", "email"])
+        self.contact_type.addItems(["Phone", "Email"])
         self.contact_value = QLineEdit()
         self.contact_label = QLineEdit()
 
@@ -69,7 +69,7 @@ class ReceptionistCreatePanel(QWidget):
             QMessageBox.critical(self, "Error", "Invalid admin password.")
             return
 
-        self.verification_code = send_verification_code()
+        self.verification_code = send_verification_code("to add a receptionist ")
 
         if self.verification_code:
             QMessageBox.information(self, "Code Sent", "Verification code sent to admin email.")
@@ -77,10 +77,15 @@ class ReceptionistCreatePanel(QWidget):
             QMessageBox.information(self, "No Email Found", "No admin email found. Skipping email verification.")
 
     def handle_submit(self):
-        if self.verification_code and self.code_input.text() != self.verification_code:
-            QMessageBox.critical(self, "Error", "Invalid verification code.")
+
+        if not self.verification_code:
+            QMessageBox.critical(self, "Error", "You must request and enter a verification code before adding a receptionist.")
             return
 
+        if self.code_input.text() != self.verification_code:
+            QMessageBox.critical(self, "Error", "Invalid verification code.")
+            return
+            
         try:
             data = {
                 'first_name': self.first_name.text(),
@@ -93,9 +98,9 @@ class ReceptionistCreatePanel(QWidget):
                 'address': self.address.toPlainText(),
                 'password': self.password.text(),
                 'contact': [{
-                    'type': self.contact_type.currentText(),
-                    'value': self.contact_value.text(),
-                    'label': self.contact_label.text()
+                'type': self.contact_type.currentText(),
+                'value': self.contact_value.text(),
+                'label': self.contact_label.text()
                 }]
             }
 
