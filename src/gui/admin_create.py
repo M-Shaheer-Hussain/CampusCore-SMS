@@ -72,10 +72,6 @@ class AdminCreatePanel(QWidget):
 
     def handle_submit(self):
 
-        # if self.verification_code and self.code_input.text() != self.verification_code:
-        #     QMessageBox.critical(self, "Error", "Invalid verification code.")
-        #     return
-        
         if not self.verification_code:
             QMessageBox.critical(self, "Error", "You must request and enter a verification code before creating an admin.")
             return
